@@ -29,9 +29,10 @@ import javax.sql.DataSource;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DataSourceFactory {
-    
+
     /**
      * Create a DataSource.
+     *
      * @param config event trace data source config
      * @return data source
      */
@@ -39,6 +40,6 @@ public final class DataSourceFactory {
         // Determine whether the data source is valid.
         new EventTraceDataSource(config).init();
         return DataSourceBuilder.create().type(BasicDataSource.class).driverClassName(config.getDriver()).url(config.getUrl())
-            .username(config.getUsername()).password(config.getPassword()).build();
+                .username(config.getUsername()).password(config.getPassword()).build();
     }
 }

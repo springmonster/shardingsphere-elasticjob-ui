@@ -29,7 +29,7 @@ import '@/assets/styles/theme.scss'
 import '@/assets/styles/index.scss'
 
 Vue.config.productionTip = false
-Vue.use(ElementUI, { locale })
+Vue.use(ElementUI, {locale})
 Vue.use(VueI18n)
 Vue.use(Vuex)
 
@@ -56,6 +56,6 @@ new Vue({
   router,
   store,
   i18n,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })

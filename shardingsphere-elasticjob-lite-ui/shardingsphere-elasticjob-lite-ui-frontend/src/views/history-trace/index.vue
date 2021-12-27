@@ -16,11 +16,12 @@
   -->
 
 <template>
-  <s-history-trace />
+  <s-history-trace/>
 </template>
 
 <script>
 import SHistoryTrace from './module/historyTrace'
+
 export default {
   name: 'HistoryTrace',
   components: {

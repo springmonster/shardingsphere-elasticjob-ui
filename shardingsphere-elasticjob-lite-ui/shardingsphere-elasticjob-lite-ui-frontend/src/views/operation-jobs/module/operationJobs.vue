@@ -24,7 +24,7 @@
         clearable
         autocomplete="off"
         @clear="search"
-        @change="search" >
+        @change="search">
         <i slot="prefix" class="el-input__icon el-icon-search"></i>
         <el-button
           slot="append"
@@ -52,7 +52,7 @@
               :type="statusColor[scope.row[item.prop]]"
               size="mini"
               plain>
-              {{ $t("operationJobs.statusText."+scope.row[item.prop]) }}
+              {{ $t("operationJobs.statusText." + scope.row[item.prop]) }}
             </el-button>
           </template>
         </el-table-column>
@@ -67,41 +67,47 @@
                 size="mini"
                 type="primary"
                 plain
-                @click="handleModify(scope.row)">{{ $t("operationJobs.actionText.modify") }}</el-button>
+                @click="handleModify(scope.row)">{{ $t("operationJobs.actionText.modify") }}
+              </el-button>
               <el-button
                 v-if="'CRASHED'!==scope.row.status"
                 size="mini"
                 type="info"
                 plain
-                @click="handleDetail(scope.row)">{{ $t("operationJobs.actionText.detail") }}</el-button>
+                @click="handleDetail(scope.row)">{{ $t("operationJobs.actionText.detail") }}
+              </el-button>
               <el-button
                 v-if="'OK'===scope.row.status"
                 :disabled="isGuest"
                 size="mini"
                 type="success"
                 plain
-                @click="handleTrigger(scope.row)">{{ $t("operationJobs.actionText.trigger") }}</el-button>
+                @click="handleTrigger(scope.row)">{{ $t("operationJobs.actionText.trigger") }}
+              </el-button>
               <el-button
                 v-if="'DISABLED'===scope.row.status"
                 :disabled="isGuest"
                 size="mini"
                 type="success"
                 plain
-                @click="handleEnable(scope.row)">{{ $t("operationJobs.actionText.enable") }}</el-button>
+                @click="handleEnable(scope.row)">{{ $t("operationJobs.actionText.enable") }}
+              </el-button>
               <el-button
                 v-if="'OK'===scope.row.status"
                 :disabled="isGuest"
                 size="mini"
                 type="warning"
                 plain
-                @click="handleDisable(scope.row)">{{ $t("operationJobs.actionText.disable") }}</el-button>
+                @click="handleDisable(scope.row)">{{ $t("operationJobs.actionText.disable") }}
+              </el-button>
               <el-button
                 v-if="'CRASHED'!==scope.row.status"
                 :disabled="isGuest"
                 size="mini"
                 type="danger"
                 plain
-                @click="handleShutdown(scope.row)">{{ $t("operationJobs.actionText.shutdown") }}</el-button>
+                @click="handleShutdown(scope.row)">{{ $t("operationJobs.actionText.shutdown") }}
+              </el-button>
               <el-button
                 v-if="'CRASHED'===scope.row.status"
                 :disabled="isGuest"
@@ -109,7 +115,8 @@
                 type="danger"
                 icon="el-icon-delete"
                 plain
-                @click="handlerRemove(scope.row)">{{ $t("operationJobs.actionText.remove") }}</el-button>
+                @click="handlerRemove(scope.row)">{{ $t("operationJobs.actionText.remove") }}
+              </el-button>
             </el-button-group>
           </template>
         </el-table-column>
@@ -199,7 +206,10 @@
             {{ $t('operationJobs.labelInfo.monitorExecution') }}
           </el-col>
           <el-col :span="8">
-            <el-checkbox v-model="editForm.monitorExecution">{{ $t('operationJobs.labelInfo.monitorExecution') }} </el-checkbox>
+            <el-checkbox v-model="editForm.monitorExecution">{{
+                $t('operationJobs.labelInfo.monitorExecution')
+              }}
+            </el-checkbox>
           </el-col>
         </el-form-item>
 
@@ -208,13 +218,13 @@
             {{ $t('operationJobs.labelInfo.failover') }}
           </el-col>
           <el-col :span="8">
-            <el-checkbox v-model="editForm.failover">{{ $t('operationJobs.labelInfo.failover') }} </el-checkbox>
+            <el-checkbox v-model="editForm.failover">{{ $t('operationJobs.labelInfo.failover') }}</el-checkbox>
           </el-col>
           <el-col :span="4">
             {{ $t('operationJobs.labelInfo.misfire') }}
           </el-col>
           <el-col :span="8">
-            <el-checkbox v-model="editForm.misfire">{{ $t('operationJobs.labelInfo.misfire') }} </el-checkbox>
+            <el-checkbox v-model="editForm.misfire">{{ $t('operationJobs.labelInfo.misfire') }}</el-checkbox>
           </el-col>
         </el-form-item>
 
@@ -316,13 +326,14 @@
         <el-button
           type="primary"
           @click="onEditConfirm('editForm')"
-        >{{ $t('btn.confirm') }}</el-button>
+        >{{ $t('btn.confirm') }}
+        </el-button>
       </div>
     </el-dialog>
   </el-row>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 import clone from 'lodash/clone'
 import API from '../api'
 
@@ -428,8 +439,7 @@ export default {
       this.tableData = data.splice(this.pageSize * (val - 1), this.pageSize)
     },
     getAllJobsBriefInfo() {
-      var params = {
-      }
+      var params = {}
       API.getAllJobsBriefInfo(params).then(res => {
         const data = Array.prototype.filter.call(res.model, this.filterSearchData)
         this.total = data.length
@@ -447,7 +457,7 @@ export default {
       return model.jobName && model.jobName.toLowerCase().includes(this.searchForm.jobName.toLowerCase())
     },
     addProperty() {
-      this.editForm.propList.push({ name: '', value: '' })
+      this.editForm.propList.push({name: '', value: ''})
     },
     removeProperty(prop) {
       const index = this.editForm.propList.indexOf(prop)
@@ -464,7 +474,7 @@ export default {
         data.props = data.props || {}
         data.propList = data.propList || []
         for (const key in data.props) {
-          data.propList.push({ name: key, value: data.props[key] })
+          data.propList.push({name: key, value: data.props[key]})
         }
         this.editForm = data
         this.modifyDialogVisible = true
@@ -475,7 +485,7 @@ export default {
         jobName: row.jobName
       }
       localStorage.setItem('/operation-jobs/status-detail/jobName', params.jobName)
-      this.$router.push({ path: '/operation-jobs/status-detail', params: params })
+      this.$router.push({path: '/operation-jobs/status-detail', params: params})
     },
     handleTrigger(row) {
       const params = {
@@ -580,11 +590,13 @@ export default {
 .btn-group {
   margin-bottom: 20px;
 }
+
 .pagination {
   float: right;
   margin: 10px -10px 10px 0;
 }
-.el-form .el-col{
+
+.el-form .el-col {
   padding-left: 4px;
 }
 </style>

@@ -33,10 +33,10 @@ import java.util.List;
  */
 @Configuration
 public class FilterConfiguration {
-    
+
     @Autowired
     private UserAuthenticationService userAuthenticationService;
-    
+
     /**
      * Register the CORS filter.
      *
@@ -52,7 +52,7 @@ public class FilterConfiguration {
         filterRegBean.setUrlPatterns(urlPatterns);
         return filterRegBean;
     }
-    
+
     /**
      * Register the authentication filter.
      *
@@ -69,5 +69,5 @@ public class FilterConfiguration {
         filterRegBean.setUrlPatterns(urlPatterns);
         return filterRegBean;
     }
-    
+
 }

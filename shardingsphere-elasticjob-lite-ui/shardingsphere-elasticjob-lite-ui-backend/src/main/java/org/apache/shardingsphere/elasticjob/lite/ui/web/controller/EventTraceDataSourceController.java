@@ -24,12 +24,7 @@ import org.apache.shardingsphere.elasticjob.lite.ui.util.SessionEventTraceDataSo
 import org.apache.shardingsphere.elasticjob.lite.ui.web.response.ResponseResult;
 import org.apache.shardingsphere.elasticjob.lite.ui.web.response.ResponseResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -44,16 +39,16 @@ import java.util.ServiceLoader;
 @RestController
 @RequestMapping("/api/data-source")
 public final class EventTraceDataSourceController {
-    
+
     public static final String DATA_SOURCE_CONFIG_KEY = "data_source_config_key";
-    
+
     private final EventTraceDataSourceConfigurationService eventTraceDataSourceConfigurationService;
-    
+
     @Autowired
     public EventTraceDataSourceController(final EventTraceDataSourceConfigurationService eventTraceDataSourceConfigurationService) {
         this.eventTraceDataSourceConfigurationService = eventTraceDataSourceConfigurationService;
     }
-    
+
     /**
      * Get all available driver classes.
      *
@@ -65,7 +60,7 @@ public final class EventTraceDataSourceController {
         ServiceLoader.load(Driver.class).forEach(each -> result.add(each.getClass().getName()));
         return ResponseResultUtil.build(result);
     }
-    
+
     /**
      * Judge whether event trace data source is activated.
      *
@@ -76,7 +71,7 @@ public final class EventTraceDataSourceController {
     public boolean activated(final HttpServletRequest request) {
         return eventTraceDataSourceConfigurationService.loadActivated().isPresent();
     }
-    
+
     /**
      * Load event trace data source configuration.
      *
@@ -88,7 +83,7 @@ public final class EventTraceDataSourceController {
         eventTraceDataSourceConfigurationService.loadActivated().ifPresent(eventTraceDataSourceConfig -> setDataSourceNameToSession(eventTraceDataSourceConfig, request.getSession()));
         return ResponseResultUtil.build(eventTraceDataSourceConfigurationService.loadAll().getEventTraceDataSourceConfiguration());
     }
-    
+
     /**
      * Add event trace data source configuration.
      *
@@ -99,7 +94,7 @@ public final class EventTraceDataSourceController {
     public ResponseResult<Boolean> add(@RequestBody final EventTraceDataSourceConfiguration config) {
         return ResponseResultUtil.build(eventTraceDataSourceConfigurationService.add(config));
     }
-    
+
     /**
      * Delete event trace data source configuration.
      *
@@ -110,7 +105,7 @@ public final class EventTraceDataSourceController {
         eventTraceDataSourceConfigurationService.delete(config.getName());
         return ResponseResultUtil.success();
     }
-    
+
     /**
      * Test event trace data source connection.
      *
@@ -123,7 +118,7 @@ public final class EventTraceDataSourceController {
         setDataSourceNameToSession(config, request.getSession());
         return ResponseResultUtil.build(true);
     }
-    
+
     /**
      * Connect event trace data source.
      *
@@ -137,7 +132,7 @@ public final class EventTraceDataSourceController {
         eventTraceDataSourceConfigurationService.load(config.getName());
         return ResponseResultUtil.build(true);
     }
-    
+
     private void setDataSourceNameToSession(final EventTraceDataSourceConfiguration dataSourceConfig, final HttpSession session) {
         session.setAttribute(DATA_SOURCE_CONFIG_KEY, dataSourceConfig);
         EventTraceDataSourceFactory.createEventTraceDataSource(dataSourceConfig.getDriver(), dataSourceConfig.getUrl(), dataSourceConfig.getUsername(), dataSourceConfig.getPassword());

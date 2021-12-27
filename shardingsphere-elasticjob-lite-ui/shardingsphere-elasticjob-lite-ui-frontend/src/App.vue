@@ -20,22 +20,24 @@
     <s-container v-if="localStorage.getItem('Access-Token')">
       <el-breadcrumb separator="/" class="bread-wrap">
         <el-breadcrumb-item :to="{ path: '/' }">{{
-          $t('common.home')
-        }}</el-breadcrumb-item>
+            $t('common.home')
+          }}
+        </el-breadcrumb-item>
         <el-breadcrumb-item v-for="each in menus" :key="each">
           {{ each }}
         </el-breadcrumb-item>
       </el-breadcrumb>
-      <router-view />
+      <router-view/>
     </s-container>
     <template v-else>
-      <router-view />
+      <router-view/>
     </template>
   </div>
 </template>
 
 <script>
 import SContainer from '@/components/Container/index.vue'
+
 export default {
   name: 'App',
   components: {

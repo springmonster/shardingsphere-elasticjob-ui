@@ -24,12 +24,7 @@ import org.apache.shardingsphere.elasticjob.lite.ui.util.SessionRegistryCenterCo
 import org.apache.shardingsphere.elasticjob.lite.ui.web.response.ResponseResult;
 import org.apache.shardingsphere.elasticjob.lite.ui.web.response.ResponseResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -41,36 +36,36 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/api/servers")
 public final class ServerOperationController {
-    
+
     private JobAPIService jobAPIService;
-    
+
     @Autowired
     public ServerOperationController(final JobAPIService jobAPIService) {
         this.jobAPIService = jobAPIService;
     }
-    
+
     /**
      * Get servers total count.
-     * 
+     *
      * @return servers total count
      */
     @GetMapping("/count")
     public int getServersTotalCount() {
         return jobAPIService.getServerStatisticsAPI().getServersTotalCount();
     }
-    
+
     /**
      * Get all servers brief info.
-     * 
+     *
      * @return all servers brief info
      */
     @GetMapping("/getAllServersBriefInfo")
     public ResponseResult<Collection<ServerBriefInfo>> getAllServersBriefInfo() {
-        Collection<ServerBriefInfo> data =  Objects.nonNull(SessionRegistryCenterConfiguration.getRegistryCenterConfiguration()) ?
+        Collection<ServerBriefInfo> data = Objects.nonNull(SessionRegistryCenterConfiguration.getRegistryCenterConfiguration()) ?
                 jobAPIService.getServerStatisticsAPI().getAllServersBriefInfo() : Collections.emptyList();
         return ResponseResultUtil.build(data);
     }
-    
+
     /**
      * Disable server.
      *
@@ -81,7 +76,7 @@ public final class ServerOperationController {
         jobAPIService.getJobOperatorAPI().disable(null, serverIp);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Enable server.
      *
@@ -92,7 +87,7 @@ public final class ServerOperationController {
         jobAPIService.getJobOperatorAPI().enable(null, serverIp);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Shutdown server.
      *
@@ -103,7 +98,7 @@ public final class ServerOperationController {
         jobAPIService.getJobOperatorAPI().shutdown(null, serverIp);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Remove server.
      *
@@ -114,7 +109,7 @@ public final class ServerOperationController {
         jobAPIService.getJobOperatorAPI().remove(null, serverIp);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Get jobs.
      *
@@ -126,48 +121,48 @@ public final class ServerOperationController {
         Collection<JobBriefInfo> data = jobAPIService.getJobStatisticsAPI().getJobsBriefInfo(serverIp);
         return ResponseResultUtil.build(data);
     }
-    
+
     /**
      * Disable server job.
-     * 
+     *
      * @param serverIp server IP address
-     * @param jobName job name
+     * @param jobName  job name
      */
     @PostMapping(value = "/{serverIp}/jobs/{jobName}/disable")
     public ResponseResult<Boolean> disableServerJob(@PathVariable("serverIp") final String serverIp, @PathVariable("jobName") final String jobName) {
         jobAPIService.getJobOperatorAPI().disable(jobName, serverIp);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Enable server job.
      *
      * @param serverIp server IP address
-     * @param jobName job name
+     * @param jobName  job name
      */
     @PostMapping("/{serverIp}/jobs/{jobName}/enable")
     public ResponseResult<Boolean> enableServerJob(@PathVariable("serverIp") final String serverIp, @PathVariable("jobName") final String jobName) {
         jobAPIService.getJobOperatorAPI().enable(jobName, serverIp);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Shutdown server job.
      *
      * @param serverIp server IP address
-     * @param jobName job name
+     * @param jobName  job name
      */
     @PostMapping("/{serverIp}/jobs/{jobName}/shutdown")
     public ResponseResult<Boolean> shutdownServerJob(@PathVariable("serverIp") final String serverIp, @PathVariable("jobName") final String jobName) {
         jobAPIService.getJobOperatorAPI().shutdown(jobName, serverIp);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Remove server job.
      *
      * @param serverIp server IP address
-     * @param jobName job name
+     * @param jobName  job name
      */
     @DeleteMapping("/{serverIp}/jobs/{jobName:.+}")
     public ResponseResult<Boolean> removeServerJob(@PathVariable("serverIp") final String serverIp, @PathVariable("jobName") final String jobName) {

@@ -17,12 +17,12 @@
 
 package org.apache.shardingsphere.elasticjob.lite.ui.dao.search;
 
-import org.apache.shardingsphere.elasticjob.tracing.event.JobExecutionEvent;
-import org.apache.shardingsphere.elasticjob.tracing.event.JobStatusTraceEvent;
-import org.apache.shardingsphere.elasticjob.tracing.rdb.storage.RDBJobEventStorage;
 import org.apache.shardingsphere.elasticjob.lite.ui.dto.request.FindJobExecutionEventsRequest;
 import org.apache.shardingsphere.elasticjob.lite.ui.dto.request.FindJobStatusTraceEventsRequest;
 import org.apache.shardingsphere.elasticjob.lite.ui.service.EventTraceHistoryService;
+import org.apache.shardingsphere.elasticjob.tracing.event.JobExecutionEvent;
+import org.apache.shardingsphere.elasticjob.tracing.event.JobStatusTraceEvent;
+import org.apache.shardingsphere.elasticjob.tracing.rdb.storage.RDBJobEventStorage;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -32,18 +32,18 @@ import java.sql.SQLException;
 
 @TestConfiguration
 public class RDBJobEventSearchTestConfiguration implements InitializingBean {
-    
+
     @Autowired
     private EventTraceHistoryService eventTraceHistoryService;
-    
+
     @Autowired
     private DataSource dataSource;
-    
+
     @Override
     public void afterPropertiesSet() throws Exception {
         initStorage();
     }
-    
+
     private void initStorage() throws SQLException {
         eventTraceHistoryService.findJobExecutionEvents(new FindJobExecutionEventsRequest(10, 1));
         eventTraceHistoryService.findJobStatusTraceEvents(new FindJobStatusTraceEventsRequest(10, 1));

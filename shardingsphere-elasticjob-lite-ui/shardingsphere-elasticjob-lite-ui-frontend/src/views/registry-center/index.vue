@@ -16,11 +16,12 @@
   -->
 
 <template>
-  <s-registry-center />
+  <s-registry-center/>
 </template>
 
 <script>
 import SRegistryCenter from './module/registryCenter'
+
 export default {
   name: 'RegistryCenter',
   components: {

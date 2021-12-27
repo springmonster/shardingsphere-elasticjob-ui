@@ -17,7 +17,7 @@
 
 ### Enhancements
 
-1. Order event trace history records by descending time 
+1. Order event trace history records by descending time
 1. Add confirm for shutdown operations
 1. Some improvements for i18n
 
@@ -50,7 +50,7 @@
 
 1. Add PostgreSQL JDBC Driver to Lite UI by default
 
-###  Change Logs
+### Change Logs
 
 1. [MILESTONE 3.0.0-RC1](https://github.com/apache/shardingsphere-elasticjob-ui/milestone/3)
 
@@ -59,11 +59,11 @@
 ### Enhancement
 
 1. Provide more clear error messages when missing JDBC drivers
-1. Support create, read, update and delete properties of the jobs 
+1. Support create, read, update and delete properties of the jobs
 1. Support auto complete for job name and server IP in job history page
 1. Upgrade parent image in Dockerfile to support resources limiting
 
-###  Change Logs
+### Change Logs
 
 1. [MILESTONE](https://github.com/apache/shardingsphere-elasticjob-ui/milestone/2)
 
@@ -74,6 +74,6 @@
 1. Refactor ElasticJob-Lite UI from jQuery/AdminTLE to Vue.js/ElementUI
 1. Refactor ElasticJob-Cloud UI from jQuery/AdminTLE to Vue.js/ElementUI
 
-###  Change Logs
+### Change Logs
 
 1. [MILESTONE](https://github.com/apache/shardingsphere-elasticjob-ui/milestone/1)

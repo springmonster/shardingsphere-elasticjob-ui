@@ -16,7 +16,7 @@
  */
 
 import axios from 'axios'
-import { Message } from 'element-ui'
+import {Message} from 'element-ui'
 import C from './conf'
 
 axios.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8'

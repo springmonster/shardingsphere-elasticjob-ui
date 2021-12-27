@@ -26,7 +26,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface JobExecutionLogRepository extends JpaRepository<JobExecutionLog, String>, JpaSpecificationExecutor<JobExecutionLog> {
-    
+
     /**
      * Find all job names with specific prefix.
      *
@@ -36,7 +36,7 @@ public interface JobExecutionLogRepository extends JpaRepository<JobExecutionLog
     @SuppressWarnings("SpringDataRepositoryMethodReturnTypeInspection")
     @Query("select distinct l.jobName from JobExecutionLog l where l.jobName like :prefix%")
     List<String> findJobNameByJobNameLike(@Param("prefix") String prefix);
-    
+
     /**
      * Find all IP addresses with specific prefix.
      *

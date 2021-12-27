@@ -26,14 +26,14 @@ import java.util.Optional;
  * Registry center configuration service.
  */
 public interface RegistryCenterConfigurationService {
-    
+
     /**
      * Load all registry center configurations.
      *
      * @return all registry center configurations
      */
     RegistryCenterConfigurations loadAll();
-    
+
     /**
      * Load registry center configuration.
      *
@@ -41,23 +41,23 @@ public interface RegistryCenterConfigurationService {
      * @return registry center configuration
      */
     RegistryCenterConfiguration load(String name);
-    
+
     /**
      * Find registry center configuration.
-     * 
-     * @param name name of registry center configuration
+     *
+     * @param name    name of registry center configuration
      * @param configs registry center configurations
      * @return registry center configuration
      */
     RegistryCenterConfiguration find(String name, RegistryCenterConfigurations configs);
-    
+
     /**
      * Load activated registry center configuration.
      *
      * @return activated registry center configuration
      */
     Optional<RegistryCenterConfiguration> loadActivated();
-    
+
     /**
      * Add registry center configuration.
      *
@@ -65,7 +65,7 @@ public interface RegistryCenterConfigurationService {
      * @return success to add or not
      */
     boolean add(RegistryCenterConfiguration config);
-    
+
     /**
      * Delete registry center configuration.
      *

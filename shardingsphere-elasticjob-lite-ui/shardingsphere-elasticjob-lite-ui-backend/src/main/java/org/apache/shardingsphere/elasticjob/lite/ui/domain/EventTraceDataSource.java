@@ -33,9 +33,9 @@ import java.sql.SQLException;
 @Getter(AccessLevel.PROTECTED)
 @Slf4j
 public final class EventTraceDataSource {
-    
+
     private final EventTraceDataSourceConfiguration eventTraceDataSourceConfiguration;
-    
+
     /**
      * Initialize data source.
      */

@@ -24,11 +24,7 @@ import org.apache.shardingsphere.elasticjob.lite.ui.util.SessionRegistryCenterCo
 import org.apache.shardingsphere.elasticjob.lite.ui.web.response.ResponseResult;
 import org.apache.shardingsphere.elasticjob.lite.ui.web.response.ResponseResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -40,39 +36,39 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/api/jobs")
 public final class JobOperationController {
-    
+
     private JobAPIService jobAPIService;
-    
+
     @Autowired
     public JobOperationController(final JobAPIService jobAPIService) {
         this.jobAPIService = jobAPIService;
     }
-    
+
     /**
      * Get jobs total count.
-     * 
+     *
      * @return jobs total count
      */
     @GetMapping("/count")
     public int getJobsTotalCount() {
         return jobAPIService.getJobStatisticsAPI().getJobsTotalCount();
     }
-    
+
     /**
      * Get all jobs brief info.
-     * 
+     *
      * @return all jobs brief info
      */
     @GetMapping("/getAllJobsBriefInfo")
     public ResponseResult<Collection<JobBriefInfo>> getAllJobsBriefInfo() {
-        Collection<JobBriefInfo> data =  Objects.nonNull(SessionRegistryCenterConfiguration.getRegistryCenterConfiguration()) ?
+        Collection<JobBriefInfo> data = Objects.nonNull(SessionRegistryCenterConfiguration.getRegistryCenterConfiguration()) ?
                 jobAPIService.getJobStatisticsAPI().getAllJobsBriefInfo() : Collections.emptyList();
         return ResponseResultUtil.build(data);
     }
-    
+
     /**
      * Trigger job.
-     * 
+     *
      * @param jobName job name
      */
     @PostMapping("/{jobName}/trigger")
@@ -80,10 +76,10 @@ public final class JobOperationController {
         jobAPIService.getJobOperatorAPI().trigger(jobName);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Disable job.
-     * 
+     *
      * @param jobName job name
      */
     @PostMapping(value = "/{jobName}/disable")
@@ -91,7 +87,7 @@ public final class JobOperationController {
         jobAPIService.getJobOperatorAPI().disable(jobName, null);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Enable job.
      *
@@ -102,10 +98,10 @@ public final class JobOperationController {
         jobAPIService.getJobOperatorAPI().enable(jobName, null);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Shutdown job.
-     * 
+     *
      * @param jobName job name
      */
     @PostMapping(value = "/{jobName}/shutdown")
@@ -113,36 +109,36 @@ public final class JobOperationController {
         jobAPIService.getJobOperatorAPI().shutdown(jobName, null);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Get sharding info.
-     * 
+     *
      * @param jobName job name
      * @return sharding info
      */
     @GetMapping(value = "/{jobName}/sharding")
     public ResponseResult<Collection<ShardingInfo>> getShardingInfo(@PathVariable("jobName") final String jobName) {
-        Collection<ShardingInfo> data =  jobAPIService.getShardingStatisticsAPI().getShardingInfo(jobName);
+        Collection<ShardingInfo> data = jobAPIService.getShardingStatisticsAPI().getShardingInfo(jobName);
         return ResponseResultUtil.build(data);
     }
-    
+
     /**
      * Disable sharding.
      *
      * @param jobName job name
-     * @param item sharding item
+     * @param item    sharding item
      */
     @PostMapping(value = "/{jobName}/sharding/{item}/disable")
     public ResponseResult<Boolean> disableSharding(@PathVariable("jobName") final String jobName, @PathVariable("item") final String item) {
         jobAPIService.getShardingOperateAPI().disable(jobName, item);
         return ResponseResultUtil.build(Boolean.TRUE);
     }
-    
+
     /**
      * Enable sharding.
      *
      * @param jobName job name
-     * @param item sharding item
+     * @param item    sharding item
      */
     @PostMapping(value = "/{jobName}/sharding/{item}/enable")
     public ResponseResult<Boolean> enableSharding(@PathVariable("jobName") final String jobName, @PathVariable("item") final String item) {

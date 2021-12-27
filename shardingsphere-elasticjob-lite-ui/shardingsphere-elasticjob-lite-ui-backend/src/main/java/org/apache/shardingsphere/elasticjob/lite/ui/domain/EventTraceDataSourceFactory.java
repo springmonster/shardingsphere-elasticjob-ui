@@ -32,16 +32,16 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class EventTraceDataSourceFactory {
-    
+
     private static final ConcurrentHashMap<HashCode, EventTraceDataSource> DATA_SOURCE_REGISTRY = new ConcurrentHashMap<>();
-    
+
     /**
      * Create event trace data source.
-     * 
+     *
      * @param driverClassName database driver class name
-     * @param url database URL
-     * @param username database username
-     * @param password database password
+     * @param url             database URL
+     * @param username        database username
+     * @param password        database password
      * @return event trace data source
      */
     public static EventTraceDataSource createEventTraceDataSource(final String driverClassName, final String url, final String username, final String password) {

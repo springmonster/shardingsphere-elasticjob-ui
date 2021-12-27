@@ -26,7 +26,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface JobStatusTraceLogRepository extends JpaRepository<JobStatusTraceLog, String>, JpaSpecificationExecutor<JobStatusTraceLog> {
-    
+
     /**
      * Find all job names in job status trace log with specific prefix.
      *

@@ -33,7 +33,7 @@
             clearable
             autocomplete="off"
             @clear="search"
-            @change="search" >
+            @change="search">
             <i slot="prefix" class="el-input__icon el-icon-search"></i>
             <el-button
               slot="append"
@@ -60,14 +60,16 @@
           :width="item.width"
         >
           <template slot-scope="scope">
-            <span v-if="'item'===item.prop || 'serverIp'===item.prop || 'instanceId'===item.prop">{{ scope.row[item.prop] }}</span>
-            <span v-if="'failover'===item.prop">{{ scope.row.failover? scope.row.failover : "-" }}</span>
+            <span v-if="'item'===item.prop || 'serverIp'===item.prop || 'instanceId'===item.prop">{{
+                scope.row[item.prop]
+              }}</span>
+            <span v-if="'failover'===item.prop">{{ scope.row.failover ? scope.row.failover : "-" }}</span>
             <el-button
               v-if="'status'===item.prop"
               :type="statusColor[scope.row.status]"
               size="mini"
               plain>
-              {{ $t("operationJobs.statusText."+scope.row[item.prop]) }}
+              {{ $t("operationJobs.statusText." + scope.row[item.prop]) }}
             </el-button>
           </template>
         </el-table-column>
@@ -83,14 +85,16 @@
                 size="mini"
                 type="success"
                 plain
-                @click="handleEnable(scope.row)">{{ $t("operationJobs.actionText.enable") }}</el-button>
+                @click="handleEnable(scope.row)">{{ $t("operationJobs.actionText.enable") }}
+              </el-button>
               <el-button
                 v-if="'PENDING'===scope.row.status"
                 :disabled="isGuest"
                 size="mini"
                 type="warning"
                 plain
-                @click="handleDisable(scope.row)">{{ $t("operationJobs.actionText.disable") }}</el-button>
+                @click="handleDisable(scope.row)">{{ $t("operationJobs.actionText.disable") }}
+              </el-button>
             </el-button-group>
           </template>
         </el-table-column>
@@ -99,9 +103,10 @@
   </el-row>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 import clone from 'lodash/clone'
 import API from '../api'
+
 export default {
   name: 'OperationJobs',
   data() {
@@ -163,7 +168,7 @@ export default {
       this.tableData = data.splice(this.pageSize * (val - 1), this.pageSize)
     },
     goBack() {
-      this.$router.push({ path: '/operation-jobs' })
+      this.$router.push({path: '/operation-jobs'})
     },
     getShardingInfo() {
       var params = {
@@ -223,6 +228,7 @@ export default {
 .btn-group {
   margin-bottom: 20px;
 }
+
 .pagination {
   float: right;
   margin: 10px -10px 10px 0;

@@ -23,17 +23,17 @@ package org.apache.shardingsphere.elasticjob.lite.ui.repository;
  * @param <E> type of data
  */
 public interface XmlRepository<E> {
-    
+
     /**
      * Load data.
-     * 
+     *
      * @return load result
      */
     E load();
-    
+
     /**
      * Save data.
-     * 
+     *
      * @param entity entity
      */
     void save(E entity);

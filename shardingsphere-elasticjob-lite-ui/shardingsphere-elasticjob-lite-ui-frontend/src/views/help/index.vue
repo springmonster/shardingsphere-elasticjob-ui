@@ -39,10 +39,11 @@
   </div>
 </template>
 <style>
-  .help-content {
-    padding-top: 10px;
-  }
-  .help-content li {
-    list-style: inside;
-  }
+.help-content {
+  padding-top: 10px;
+}
+
+.help-content li {
+  list-style: inside;
+}
 </style>

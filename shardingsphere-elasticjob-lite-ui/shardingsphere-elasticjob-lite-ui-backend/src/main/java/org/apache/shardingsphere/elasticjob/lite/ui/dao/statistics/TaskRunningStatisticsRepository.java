@@ -31,7 +31,7 @@ import java.util.List;
  */
 @Repository
 public interface TaskRunningStatisticsRepository extends JpaRepository<TaskRunningStatistics, Long> {
-    
+
     /**
      * Find task running statistics.
      *

@@ -32,34 +32,36 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FindJobExecutionEventsRequest extends BasePageRequest {
-    
+
     private String jobName;
-    
+
     private String ip;
-    
+
     private Boolean isSuccess;
-    
+
     private Date startTimeFrom;
-    
+
     private Date startTimeTo;
-    
+
     /**
      * Create new FindJobExecutionEventsRequest with pageSize and pageNumber.
+     *
      * @param pageNumber page number
-     * @param pageSize page size
+     * @param pageSize   page size
      */
     public FindJobExecutionEventsRequest(final Integer pageSize, final Integer pageNumber) {
         super(pageSize, pageNumber, null, null);
     }
-    
+
     /**
      * Create new FindJobExecutionEventsRequest with properties.
-     * @param pageNumber page number
-     * @param pageSize page size
-     * @param sortBy the field name sort by
-     * @param orderType order type, asc or desc
+     *
+     * @param pageNumber    page number
+     * @param pageSize      page size
+     * @param sortBy        the field name sort by
+     * @param orderType     order type, asc or desc
      * @param startTimeFrom start time from
-     * @param startTimeTo start time to
+     * @param startTimeTo   start time to
      */
     public FindJobExecutionEventsRequest(final Integer pageSize, final Integer pageNumber, final String sortBy,
                                          final String orderType, final Date startTimeFrom, final Date startTimeTo) {

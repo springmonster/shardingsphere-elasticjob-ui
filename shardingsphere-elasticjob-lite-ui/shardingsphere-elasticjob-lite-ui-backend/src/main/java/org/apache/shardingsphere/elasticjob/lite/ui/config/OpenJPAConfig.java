@@ -34,19 +34,19 @@ import java.util.Map;
 @Configuration
 @EnableConfigurationProperties(JpaProperties.class)
 public class OpenJPAConfig extends JpaBaseConfiguration {
-    
+
     protected OpenJPAConfig(DataSource dataSource,
                             JpaProperties properties,
                             ObjectProvider<JtaTransactionManager> jtaTransactionManager,
                             ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
         super(dataSource, properties, jtaTransactionManager, transactionManagerCustomizers);
     }
-    
+
     @Override
     protected AbstractJpaVendorAdapter createJpaVendorAdapter() {
         return new OpenJpaVendorAdapter();
     }
-    
+
     @Override
     protected Map<String, Object> getVendorProperties() {
         final Map<String, Object> result = new HashMap<>();

@@ -25,9 +25,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public final class HomeFolderUtilsTest {
-    
+
     private static final String HOME_FOLDER = System.getProperty("user.home") + File.separator + ".elasticjob-console" + File.separator;
-    
+
     @Test
     public void assertGetFilePathInHomeFolder() {
         assertThat(HomeFolderUtils.getFilePathInHomeFolder("test_file"), is(HOME_FOLDER + "test_file"));

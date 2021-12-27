@@ -38,27 +38,29 @@ public class BasePageResponse<T> implements Serializable {
      * Total count of rows.
      */
     private Long total;
-    
+
     /**
      * Rows data.
      */
     private List<T> rows;
-    
+
     /**
      * Create new BasePageResponse with total and data.
+     *
      * @param total Total count of match data
-     * @param data Current page of data
-     * @param <T> Data type
+     * @param data  Current page of data
+     * @param <T>   Data type
      * @return BasePageResponse
      */
     public static <T> BasePageResponse of(final Long total, final List<T> data) {
         return new BasePageResponse(total, data);
     }
-    
+
     /**
      * Create new BasePageResponse with Page.
+     *
      * @param page match data info.
-     * @param <T> Data type
+     * @param <T>  Data type
      * @return BasePageResponse
      */
     public static <T> BasePageResponse of(final Page<T> page) {

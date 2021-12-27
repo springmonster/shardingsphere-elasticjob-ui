@@ -26,9 +26,9 @@ import org.apache.shardingsphere.elasticjob.lite.ui.domain.RegistryCenterConfigu
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class SessionRegistryCenterConfiguration {
-    
+
     private static RegistryCenterConfiguration regCenterConfig;
-    
+
     /**
      * Get registry center configuration.
      *
@@ -37,10 +37,10 @@ public final class SessionRegistryCenterConfiguration {
     public static RegistryCenterConfiguration getRegistryCenterConfiguration() {
         return regCenterConfig;
     }
-    
+
     /**
      * Set registry center configuration.
-     * 
+     *
      * @param regCenterConfig registry center configuration
      */
     public static void setRegistryCenterConfiguration(final RegistryCenterConfiguration regCenterConfig) {

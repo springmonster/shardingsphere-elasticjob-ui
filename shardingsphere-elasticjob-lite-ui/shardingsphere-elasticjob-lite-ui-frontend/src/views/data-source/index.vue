@@ -16,11 +16,12 @@
   -->
 
 <template>
-  <s-data-source />
+  <s-data-source/>
 </template>
 
 <script>
 import SDataSource from './module/dataSource'
+
 export default {
   name: 'DataSource',
   components: {

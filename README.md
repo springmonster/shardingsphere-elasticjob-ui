@@ -6,19 +6,21 @@
 
 ## Overview
 
-ElasticJob UI is an administrator console of [ElasticJob](http://shardingsphere.apache.org/elasticjob/).
-There are two parts in this project:
+ElasticJob UI is an administrator console of [ElasticJob](http://shardingsphere.apache.org/elasticjob/). There are two
+parts in this project:
 
 - shardingsphere-elasticjob-lite-ui: the UI of ElasticJob-Lite
 - shardingsphere-elasticjob-cloud-ui: the UI of ElasticJob-Cloud
 
 ### ElasticJob-UI Frontend
 
-shardingsphere-elasticjob-lite-ui-frontend & shardingsphere-elasticjob-cloud-ui-frontend based on [vue](https://github.com/vuejs/vue) and use the UI Toolkit [element](https://github.com/ElemeFE/element).
+shardingsphere-elasticjob-lite-ui-frontend & shardingsphere-elasticjob-cloud-ui-frontend based
+on [vue](https://github.com/vuejs/vue) and use the UI Toolkit [element](https://github.com/ElemeFE/element).
 
 ### ElasticJob-UI Backend
 
-shardingsphere-elasticjob-lite-ui-backend & shardingsphere-elasticjob-cloud-ui-backend are standard Spring Boot projects.
+shardingsphere-elasticjob-lite-ui-backend & shardingsphere-elasticjob-cloud-ui-backend are standard Spring Boot
+projects.
 
 ## How to Build
 
@@ -28,16 +30,21 @@ cd shardingsphere-elasticjob-ui/
 mvn clean package -Prelease
 ```
 
-- Get the lite tar in `shardingsphere-elasticjob-ui/shardingsphere-elasticjob-ui-distribution/shardingsphere-elasticjob-lite-ui-bin-distribution/target/apache-shardingsphere-${latest.release.version}-shardingsphere-elasticjob-lite-ui-bin.tar.gz`
-- Get the cloud tar in `shardingsphere-elasticjob-ui/shardingsphere-elasticjob-ui-distribution/shardingsphere-elasticjob-cloud-ui-bin-distribution/target/apache-shardingsphere-${latest.release.version}-shardingsphere-elasticjob-cloud-ui-bin.tar.gz`
+- Get the lite tar
+  in `shardingsphere-elasticjob-ui/shardingsphere-elasticjob-ui-distribution/shardingsphere-elasticjob-lite-ui-bin-distribution/target/apache-shardingsphere-${latest.release.version}-shardingsphere-elasticjob-lite-ui-bin.tar.gz`
+- Get the cloud tar
+  in `shardingsphere-elasticjob-ui/shardingsphere-elasticjob-ui-distribution/shardingsphere-elasticjob-cloud-ui-bin-distribution/target/apache-shardingsphere-${latest.release.version}-shardingsphere-elasticjob-cloud-ui-bin.tar.gz`
 
 ## How to Connect Event Trace DataSource
 
-Restricted by the agreement, some databases' JDBC driver cannot be added to project directly, and users need to add it by themselves. There are two ways:
+Restricted by the agreement, some databases' JDBC driver cannot be added to project directly, and users need to add it
+by themselves. There are two ways:
 
 ### Add JDBC Driver Dependency to pom.xml and Build
 
-Add JDBC driver dependency to [shardingsphere-elasticjob-lite-ui/shardingsphere-elasticjob-lite-ui-backend/pom.xml](https://github.com/apache/shardingsphere-elasticjob-ui/blob/master/shardingsphere-elasticjob-lite-ui/shardingsphere-elasticjob-lite-ui-backend/pom.xml) and build.
+Add JDBC driver dependency
+to [shardingsphere-elasticjob-lite-ui/shardingsphere-elasticjob-lite-ui-backend/pom.xml](https://github.com/apache/shardingsphere-elasticjob-ui/blob/master/shardingsphere-elasticjob-lite-ui/shardingsphere-elasticjob-lite-ui-backend/pom.xml)
+and build.
 
 ### Add JDBC Driver JAR to ext-lib in Binary Distribution Package
 

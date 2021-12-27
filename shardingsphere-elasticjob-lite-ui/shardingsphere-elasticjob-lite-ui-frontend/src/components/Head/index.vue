@@ -18,14 +18,14 @@
 <template>
   <div class="s-layout-header">
     <div class="s-pro-components-header">
-      <i :class="classes" @click="togger" />
+      <i :class="classes" @click="togger"/>
       <div class="s-pro-components-header-right">
         <div class="avatar">
           <el-dropdown @command="handlerClick">
             <el-tag type="success">
               <span class="el-dropdown-link">
                 {{ username || 'Not logged in' }}
-                <i class="el-icon-arrow-down el-icon--right" />
+                <i class="el-icon-arrow-down el-icon--right"/>
               </span>
             </el-tag>
             <el-dropdown-menu slot="dropdown">
@@ -36,10 +36,13 @@
         <div class="lang-more">
           <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link">
-              {{ dropdownTitle }}<i class="el-icon-arrow-down el-icon--right" />
+              {{ dropdownTitle }}<i class="el-icon-arrow-down el-icon--right"/>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item v-for="(item, index) in dropdownList" :key="index" :command="item.command">{{ item.title }}</el-dropdown-item>
+              <el-dropdown-item v-for="(item, index) in dropdownList" :key="index" :command="item.command">{{
+                  item.title
+                }}
+              </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -109,18 +112,21 @@ export default {
   height: 64px;
   line-height: 64px;
   width: 100%;
+
   .bread-nav {
     float: right;
     height: 64px;
     line-height: 64px;
     padding-right: 20px;
   }
+
   .s-pro-components-header {
     height: 64px;
     padding: 0;
     background: #fff;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     position: relative;
+
     i.icon-item {
       width: 16px;
       height: 16px;
@@ -128,18 +134,22 @@ export default {
       cursor: pointer;
       margin: 24px;
     }
+
     i.icon-shrink {
       background: url('../../assets/img/shrink.png') no-repeat left center;
     }
+
     .icon-expand {
       background: url('../../assets/img/expand.png') no-repeat left center;
     }
+
     .s-pro-components-header-right {
       float: right;
       height: 100%;
       overflow: hidden;
     }
   }
+
   .avatar {
     cursor: pointer;
     padding: 0 12px;
@@ -147,6 +157,7 @@ export default {
     transition: all 0.3s;
     height: 100%;
   }
+
   .lang-more {
     cursor: pointer;
     padding: 0 20px;

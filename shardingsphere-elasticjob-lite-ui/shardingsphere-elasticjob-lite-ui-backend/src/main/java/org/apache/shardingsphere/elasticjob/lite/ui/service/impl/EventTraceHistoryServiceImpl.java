@@ -19,8 +19,6 @@ package org.apache.shardingsphere.elasticjob.lite.ui.service.impl;
 
 import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shardingsphere.elasticjob.tracing.event.JobExecutionEvent;
-import org.apache.shardingsphere.elasticjob.tracing.event.JobStatusTraceEvent;
 import org.apache.shardingsphere.elasticjob.lite.ui.dao.search.JobExecutionLogRepository;
 import org.apache.shardingsphere.elasticjob.lite.ui.dao.search.JobStatusTraceLogRepository;
 import org.apache.shardingsphere.elasticjob.lite.ui.domain.JobExecutionLog;
@@ -29,14 +27,11 @@ import org.apache.shardingsphere.elasticjob.lite.ui.dto.request.BasePageRequest;
 import org.apache.shardingsphere.elasticjob.lite.ui.dto.request.FindJobExecutionEventsRequest;
 import org.apache.shardingsphere.elasticjob.lite.ui.dto.request.FindJobStatusTraceEventsRequest;
 import org.apache.shardingsphere.elasticjob.lite.ui.service.EventTraceHistoryService;
+import org.apache.shardingsphere.elasticjob.tracing.event.JobExecutionEvent;
+import org.apache.shardingsphere.elasticjob.tracing.event.JobStatusTraceEvent;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.convert.QueryByExamplePredicateBuilder;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
@@ -55,46 +50,46 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public final class EventTraceHistoryServiceImpl implements EventTraceHistoryService {
-    
+
     @Autowired
     private JobExecutionLogRepository jobExecutionLogRepository;
-    
+
     @Autowired
     private JobStatusTraceLogRepository jobStatusTraceLogRepository;
-    
+
     @Override
     public Page<JobExecutionEvent> findJobExecutionEvents(final FindJobExecutionEventsRequest findJobExecutionEventsRequest) {
         Example<JobExecutionLog> jobExecutionLogExample = getExample(findJobExecutionEventsRequest, JobExecutionLog.class);
         Specification<JobExecutionLog> specification = getSpecWithExampleAndDate(jobExecutionLogExample, findJobExecutionEventsRequest.getStartTimeFrom(),
-            findJobExecutionEventsRequest.getStartTimeTo(), "startTime");
+                findJobExecutionEventsRequest.getStartTimeTo(), "startTime");
         Page<JobExecutionLog> page = jobExecutionLogRepository.findAll(specification, getPageable(findJobExecutionEventsRequest, JobExecutionLog.class));
         return new PageImpl<>(page.getContent().stream().map(JobExecutionLog::toJobExecutionEvent).collect(Collectors.toList()), null, page.getTotalElements());
     }
-    
+
     @Override
     public List<String> findJobNamesInExecutionLog(final String jobNamePrefix) {
         return jobExecutionLogRepository.findJobNameByJobNameLike(jobNamePrefix);
     }
-    
+
     @Override
     public List<String> findIpInExecutionLog(final String ipPrefix) {
         return jobExecutionLogRepository.findIpByIpLike(ipPrefix);
     }
-    
+
     @Override
     public Page<JobStatusTraceEvent> findJobStatusTraceEvents(final FindJobStatusTraceEventsRequest findJobStatusTraceEventsRequest) {
         Example<JobStatusTraceLog> jobStatusTraceLogExample = getExample(findJobStatusTraceEventsRequest, JobStatusTraceLog.class);
         Specification<JobStatusTraceLog> specification = getSpecWithExampleAndDate(jobStatusTraceLogExample, findJobStatusTraceEventsRequest.getCreationTimeFrom(),
-            findJobStatusTraceEventsRequest.getCreationTimeTo(), "creationTime");
+                findJobStatusTraceEventsRequest.getCreationTimeTo(), "creationTime");
         Page<JobStatusTraceLog> page = jobStatusTraceLogRepository.findAll(specification, getPageable(findJobStatusTraceEventsRequest, JobStatusTraceLog.class));
         return new PageImpl<>(page.getContent().stream().map(JobStatusTraceLog::toJobStatusTraceEvent).collect(Collectors.toList()), null, page.getTotalElements());
     }
-    
+
     @Override
     public List<String> findJobNamesInStatusTraceLog(final String jobNamePrefix) {
         return jobStatusTraceLogRepository.findJobNameByJobNameLike(jobNamePrefix);
     }
-    
+
     private <T> Pageable getPageable(final BasePageRequest pageRequest, final Class<T> clazz) {
         int page = 0;
         int perPage = BasePageRequest.DEFAULT_PAGE_SIZE;
@@ -104,12 +99,12 @@ public final class EventTraceHistoryServiceImpl implements EventTraceHistoryServ
         }
         return new PageRequest(page, perPage, getSort(pageRequest, clazz));
     }
-    
+
     private <T> Sort getSort(final BasePageRequest pageRequest, final Class<T> clazz) {
         Sort sort = null;
         boolean sortFieldIsPresent = Arrays.stream(clazz.getDeclaredFields())
-            .map(Field::getName)
-            .anyMatch(e -> e.equals(pageRequest.getSortBy()));
+                .map(Field::getName)
+                .anyMatch(e -> e.equals(pageRequest.getSortBy()));
         if (!sortFieldIsPresent) {
             return sort;
         }
@@ -123,7 +118,7 @@ public final class EventTraceHistoryServiceImpl implements EventTraceHistoryServ
         }
         return sort;
     }
-    
+
     private <T> Specification<T> getSpecWithExampleAndDate(final Example<T> example, final Date from, final Date to, final String field) {
         return (root, query, builder) -> {
             final List<Predicate> predicates = new ArrayList<>();
@@ -138,7 +133,7 @@ public final class EventTraceHistoryServiceImpl implements EventTraceHistoryServ
             return builder.and(predicates.toArray(new Predicate[0]));
         };
     }
-    
+
     private <T> Example<T> getExample(final Object source, final Class<T> clazz) {
         T instance = BeanUtils.instantiateClass(clazz);
         BeanUtils.copyProperties(source, instance);

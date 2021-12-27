@@ -24,7 +24,7 @@
         clearable
         autocomplete="off"
         @clear="search"
-        @change="search" >
+        @change="search">
         <i slot="prefix" class="el-input__icon el-icon-search"></i>
         <el-button
           slot="append"
@@ -60,28 +60,32 @@
                 size="mini"
                 type="info"
                 plain
-                @click="handleDetail(scope.row)">{{ $t("operationServers.actionText.detail") }}</el-button>
+                @click="handleDetail(scope.row)">{{ $t("operationServers.actionText.detail") }}
+              </el-button>
               <el-button
                 v-if="scope.row.instancesNum && scope.row.disabledJobsNum"
                 :disabled="isGuest"
                 size="mini"
                 type="success"
                 plain
-                @click="handleEnable(scope.row)">{{ $t("operationServers.actionText.enable") }}</el-button>
+                @click="handleEnable(scope.row)">{{ $t("operationServers.actionText.enable") }}
+              </el-button>
               <el-button
                 v-if="0===scope.row.disabledJobsNum && scope.row.instancesNum"
                 :disabled="isGuest"
                 size="mini"
                 type="warning"
                 plain
-                @click="handleDisable(scope.row)">{{ $t("operationServers.actionText.disable") }}</el-button>
+                @click="handleDisable(scope.row)">{{ $t("operationServers.actionText.disable") }}
+              </el-button>
               <el-button
                 v-if="scope.row.instancesNum"
                 :disabled="isGuest"
                 size="mini"
                 type="danger"
                 plain
-                @click="handleShutdown(scope.row)">{{ $t("operationServers.actionText.shutdown") }}</el-button>
+                @click="handleShutdown(scope.row)">{{ $t("operationServers.actionText.shutdown") }}
+              </el-button>
               <el-button
                 v-if="0===scope.row.instancesNum"
                 :disabled="isGuest"
@@ -89,7 +93,8 @@
                 type="danger"
                 icon="el-icon-delete"
                 plain
-                @click="handlerRemove(scope.row)">{{ $t("operationServers.actionText.remove") }}</el-button>
+                @click="handlerRemove(scope.row)">{{ $t("operationServers.actionText.remove") }}
+              </el-button>
             </el-button-group>
           </template>
         </el-table-column>
@@ -107,9 +112,10 @@
   </el-row>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 import clone from 'lodash/clone'
 import API from '../api'
+
 export default {
   name: 'OperationServers',
   data() {
@@ -154,8 +160,7 @@ export default {
       this.tableData = data.splice(this.pageSize * (val - 1), this.pageSize)
     },
     getAllServersBriefInfo() {
-      var params = {
-      }
+      var params = {}
       API.getAllServersBriefInfo(params).then(res => {
         const data = Array.prototype.filter.call(res.model, this.filterSearchData)
         this.total = data.length
@@ -177,7 +182,7 @@ export default {
         serverIp: row.serverIp
       }
       localStorage.setItem('/operation-servers/status-detail/serverIp', params.serverIp)
-      this.$router.push({ path: '/operation-servers/status-detail', params: params })
+      this.$router.push({path: '/operation-servers/status-detail', params: params})
     },
     handleEnable(row) {
       const params = {
@@ -244,11 +249,13 @@ export default {
 .btn-group {
   margin-bottom: 20px;
 }
+
 .pagination {
   float: right;
   margin: 10px -10px 10px 0;
 }
-.el-form .el-col{
+
+.el-form .el-col {
   padding-left: 4px;
 }
 </style>

@@ -25,7 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Bootstrap {
-    
+
     /**
      * Startup RESTful server.
      *
@@ -33,8 +33,8 @@ public class Bootstrap {
      */
     //CHECKSTYLE:OFF
     public static void main(final String[] args) {
-    //CHECKSTYLE:ON
+        //CHECKSTYLE:ON
         SpringApplication.run(Bootstrap.class, args);
     }
-    
+
 }

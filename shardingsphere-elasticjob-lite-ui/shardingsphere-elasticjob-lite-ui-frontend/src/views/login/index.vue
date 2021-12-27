@@ -24,7 +24,7 @@
       auto-complete="off"
       label-position="left"
     >
-      <h3 class="title" />
+      <h3 class="title"/>
       <el-form-item prop="username">
         <el-input
           v-model="loginForm.username"
@@ -33,7 +33,7 @@
           auto-complete="off"
           placeholder="username"
         >
-          <i slot="prefix" class="icon-user icon-iem" />
+          <i slot="prefix" class="icon-user icon-iem"/>
         </el-input>
       </el-form-item>
       <el-form-item prop="password">
@@ -45,7 +45,7 @@
           placeholder="password"
           @keyup.enter.native="handleLogin"
         >
-          <i slot="prefix" class="icon-password icon-iem" />
+          <i slot="prefix" class="icon-password icon-iem"/>
         </el-input>
       </el-form-item>
       <el-form-item class="btn-login">
@@ -54,16 +54,18 @@
           type="primary"
           style="width:100%;"
           @click.native.prevent="handleLogin"
-        >{{ $t("login.btnTxt") }}</el-button>
+        >{{ $t("login.btnTxt") }}
+        </el-button>
       </el-form-item>
     </el-form>
-    <s-footer style="position: fixed;bottom: 0;" />
+    <s-footer style="position: fixed;bottom: 0;"/>
   </div>
 </template>
 
 <script>
 import SFooter from '../../components/Footer/index'
 import API from './api'
+
 export default {
   name: 'Login',
   components: {
@@ -112,7 +114,7 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss"  lang="scss">
+<style rel="stylesheet/scss" lang="scss">
 $bg: #2d3a4b;
 $light_gray: #f2f2f2;
 
@@ -122,6 +124,7 @@ $light_gray: #f2f2f2;
     display: inline-block;
     // height: 47px;
     width: 85%;
+
     input {
       background: transparent;
       border: 0px;
@@ -136,28 +139,34 @@ $light_gray: #f2f2f2;
       }
     }
   }
+
   .el-form-item {
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     color: #454545;
   }
+
   .el-form-item__content {
     background: #070601;
     border-radius: 6px;
   }
+
   .icon-iem {
     margin: 8px 7px;
     width: 24px;
     height: 24px;
     display: inline-block;
   }
+
   .icon-user {
     background: url('../../assets/img/user.png') no-repeat left center;
   }
+
   .icon-password {
     background: url('../../assets/img/password.png') no-repeat left center;
   }
+
   .btn-login {
     margin-top: 50px;
   }
@@ -174,6 +183,7 @@ $light_gray: #eee;
   width: 100%;
   // background-color: $bg;
   background: url('../../assets/img/bg.png') no-repeat center center;
+
   .login-form {
     position: absolute;
     left: 0;
@@ -183,6 +193,7 @@ $light_gray: #eee;
     padding: 35px 35px 15px 35px;
     margin: 120px auto;
   }
+
   .svg-container {
     padding: 6px 5px 6px 15px;
     color: $dark_gray;
@@ -190,12 +201,14 @@ $light_gray: #eee;
     width: 30px;
     display: inline-block;
   }
+
   .title {
     margin: 0px auto 40px auto;
     height: 86px;
     background: url('../../assets/img/login-logo.png') no-repeat center center;
   }
 }
+
 .footer-copy-right {
   width: 100%;
   line-height: 30px;

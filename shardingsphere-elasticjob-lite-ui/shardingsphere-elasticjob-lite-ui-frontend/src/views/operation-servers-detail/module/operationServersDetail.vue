@@ -33,7 +33,7 @@
             clearable
             autocomplete="off"
             @clear="search"
-            @change="search" >
+            @change="search">
             <i slot="prefix" class="el-input__icon el-icon-search"></i>
             <el-button
               slot="append"
@@ -122,28 +122,32 @@
                 size="mini"
                 type="success"
                 plain
-                @click="handleEnable(scope.row)">{{ $t("operationServers.actionText.enable") }}</el-button>
+                @click="handleEnable(scope.row)">{{ $t("operationServers.actionText.enable") }}
+              </el-button>
               <el-button
                 v-if="scope.row.instanceCount && 'OK'===scope.row.status"
                 :disabled="isGuest"
                 size="mini"
                 type="warning"
                 plain
-                @click="handleDisable(scope.row)">{{ $t("operationServers.actionText.disable") }}</el-button>
+                @click="handleDisable(scope.row)">{{ $t("operationServers.actionText.disable") }}
+              </el-button>
               <el-button
                 v-if="scope.row.instanceCount"
                 :disabled="isGuest"
                 size="mini"
                 type="danger"
                 plain
-                @click="handleShutdown(scope.row)">{{ $t("operationServers.actionText.shutdown") }}</el-button>
+                @click="handleShutdown(scope.row)">{{ $t("operationServers.actionText.shutdown") }}
+              </el-button>
               <el-button
                 v-if="!scope.row.instanceCount"
                 :disabled="isGuest"
                 size="mini"
                 type="danger"
                 plain
-                @click="handleRemove(scope.row)">{{ $t("operationServers.actionText.remove") }}</el-button>
+                @click="handleRemove(scope.row)">{{ $t("operationServers.actionText.remove") }}
+              </el-button>
             </el-button-group>
           </template>
         </el-table-column>
@@ -161,7 +165,7 @@
   </el-row>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 import clone from 'lodash/clone'
 import API from '../../operation-servers/api'
 
@@ -216,7 +220,7 @@ export default {
       this.tableData = data.splice(this.pageSize * (val - 1), this.pageSize)
     },
     goBack() {
-      this.$router.push({ path: '/operation-servers' })
+      this.$router.push({path: '/operation-servers'})
     },
     getJobs() {
       var params = {
@@ -304,6 +308,7 @@ export default {
 .btn-group {
   margin-bottom: 20px;
 }
+
 .pagination {
   float: right;
   margin: 10px -10px 10px 0;

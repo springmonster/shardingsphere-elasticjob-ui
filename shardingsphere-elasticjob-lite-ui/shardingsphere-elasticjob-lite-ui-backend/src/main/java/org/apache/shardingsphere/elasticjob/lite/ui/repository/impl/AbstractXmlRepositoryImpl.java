@@ -32,13 +32,13 @@ import java.io.File;
  * @param <E> type of data
  */
 public abstract class AbstractXmlRepositoryImpl<E> implements XmlRepository<E> {
-    
+
     private final File file;
-    
+
     private final Class<E> clazz;
-    
+
     private final JAXBContext jaxbContext;
-    
+
     protected AbstractXmlRepositoryImpl(final String fileName, final Class<E> clazz) {
         file = new File(HomeFolderUtils.getFilePathInHomeFolder(fileName));
         this.clazz = clazz;
@@ -49,7 +49,7 @@ public abstract class AbstractXmlRepositoryImpl<E> implements XmlRepository<E> {
             throw new JobConsoleException(JobConsoleException.SERVER_ERROR, ex.getMessage());
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     @Override
     public synchronized E load() {
@@ -66,7 +66,7 @@ public abstract class AbstractXmlRepositoryImpl<E> implements XmlRepository<E> {
             throw new JobConsoleException(JobConsoleException.SERVER_ERROR, ex.getMessage());
         }
     }
-    
+
     @Override
     public synchronized void save(final E entity) {
         try {

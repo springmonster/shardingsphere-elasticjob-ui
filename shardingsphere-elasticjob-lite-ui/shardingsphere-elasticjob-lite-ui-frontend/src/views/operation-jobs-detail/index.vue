@@ -16,11 +16,12 @@
   -->
 
 <template>
-  <s-operation-jobs-detail />
+  <s-operation-jobs-detail/>
 </template>
 
 <script>
 import SOperationJobsDetail from './module/operationJobsDetail'
+
 export default {
   name: 'OperationJobsDetail',
   components: {

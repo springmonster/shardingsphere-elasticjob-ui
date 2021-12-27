@@ -41,16 +41,16 @@ public final class RegistryCenterConfiguration implements Serializable {
 
     @XmlAttribute(required = true)
     private String name;
-    
+
     @XmlAttribute(required = true)
     private String zkAddressList;
-    
+
     @XmlAttribute
     private String namespace;
-    
+
     @XmlAttribute
     private String digest;
-    
+
     @XmlAttribute
     private boolean activated;
 }

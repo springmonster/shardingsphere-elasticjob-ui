@@ -29,7 +29,7 @@ import java.util.List;
  * Event trace history service.
  */
 public interface EventTraceHistoryService {
-    
+
     /**
      * Find job execution events.
      *
@@ -37,7 +37,7 @@ public interface EventTraceHistoryService {
      * @return job execution events
      */
     Page<JobExecutionEvent> findJobExecutionEvents(FindJobExecutionEventsRequest findJobExecutionEventsRequest);
-    
+
     /**
      * Find job names with specific prefix.
      *
@@ -45,7 +45,7 @@ public interface EventTraceHistoryService {
      * @return matched job names
      */
     List<String> findJobNamesInExecutionLog(String jobNamePrefix);
-    
+
     /**
      * Find ip addresses with specific prefix.
      *
@@ -53,7 +53,7 @@ public interface EventTraceHistoryService {
      * @return matched ip addresses
      */
     List<String> findIpInExecutionLog(String ipPrefix);
-    
+
     /**
      * Find job status trace events.
      *
@@ -61,7 +61,7 @@ public interface EventTraceHistoryService {
      * @return job status trace events
      */
     Page<JobStatusTraceEvent> findJobStatusTraceEvents(FindJobStatusTraceEventsRequest findJobStatusTraceEventsRequest);
-    
+
     /**
      * Find job names with specific prefix in status trace log.
      *

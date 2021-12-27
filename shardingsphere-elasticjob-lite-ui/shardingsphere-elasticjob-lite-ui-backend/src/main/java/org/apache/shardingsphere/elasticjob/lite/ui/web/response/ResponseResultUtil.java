@@ -27,7 +27,7 @@ import org.apache.shardingsphere.elasticjob.lite.ui.exception.JobConsoleExceptio
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ResponseResultUtil {
-    
+
     /**
      * Build the successful response without data model.
      *
@@ -36,12 +36,12 @@ public final class ResponseResultUtil {
     public static ResponseResult success() {
         return build(null);
     }
-    
+
     /**
      * Build the successful response with data model.
      *
      * @param model data model
-     * @param <T> data model type
+     * @param <T>   data model type
      * @return response result
      */
     public static <T> ResponseResult<T> build(final T model) {
@@ -50,7 +50,7 @@ public final class ResponseResultUtil {
         result.setModel(model);
         return result;
     }
-    
+
     /**
      * Build the response from json.
      *
@@ -60,7 +60,7 @@ public final class ResponseResultUtil {
     public static ResponseResult buildFromJson(final String responseResultJson) {
         return new Gson().fromJson(responseResultJson, ResponseResult.class);
     }
-    
+
     /**
      * Build the error response of illegal argument exception.
      *
@@ -74,7 +74,7 @@ public final class ResponseResultUtil {
         result.setErrorMsg(errorMsg);
         return result;
     }
-    
+
     /**
      * Build the error response of unauthorized exception.
      *
@@ -88,7 +88,7 @@ public final class ResponseResultUtil {
         result.setErrorMsg(errorMsg);
         return result;
     }
-    
+
     /**
      * Build the error response of ShardingSphere UI exception.
      *
@@ -102,7 +102,7 @@ public final class ResponseResultUtil {
         result.setErrorMsg(exception.getMessage());
         return result;
     }
-    
+
     /**
      * Build the error response of uncaught exception.
      *
@@ -116,5 +116,5 @@ public final class ResponseResultUtil {
         result.setErrorMsg(errorMsg);
         return result;
     }
-    
+
 }

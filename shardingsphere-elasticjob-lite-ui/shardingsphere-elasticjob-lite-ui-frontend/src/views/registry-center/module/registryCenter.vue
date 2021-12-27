@@ -24,7 +24,8 @@
         type="primary"
         icon="el-icon-plus"
         @click="add"
-      >{{ $t("registryCenter.btnTxt") }}</el-button>
+      >{{ $t("registryCenter.btnTxt") }}
+      </el-button>
     </div>
     <div class="table-wrap">
       <el-table :data="tableData" border style="width: 100%">
@@ -85,7 +86,7 @@
     >
       <el-form ref="form" :model="form" :rules="rules" label-width="170px">
         <el-form-item :label="$t('registryCenter.registDialog.name')" prop="name">
-          <el-input :placeholder="$t('registryCenter.rules.name')" v-model="form.name" autocomplete="off" />
+          <el-input :placeholder="$t('registryCenter.rules.name')" v-model="form.name" autocomplete="off"/>
         </el-form-item>
         <el-form-item :label="$t('registryCenter.registDialog.address')" prop="zkAddressList">
           <el-input
@@ -114,15 +115,17 @@
         <el-button
           type="primary"
           @click="onConfirm('form')"
-        >{{ $t("registryCenter.registDialog.btnConfirmTxt") }}</el-button>
+        >{{ $t("registryCenter.registDialog.btnConfirmTxt") }}
+        </el-button>
       </div>
     </el-dialog>
   </el-row>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 import clone from 'lodash/clone'
 import API from '../api'
+
 export default {
   name: 'RegistryCenter',
   data() {
@@ -278,6 +281,7 @@ export default {
 .btn-group {
   margin-bottom: 20px;
 }
+
 .pagination {
   float: right;
   margin: 10px -10px 10px 0;

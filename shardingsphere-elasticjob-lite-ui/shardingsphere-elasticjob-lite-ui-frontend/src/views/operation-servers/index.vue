@@ -16,11 +16,12 @@
   -->
 
 <template>
-  <s-operation-servers />
+  <s-operation-servers/>
 </template>
 
 <script>
 import SOperationServers from './module/operationServers'
+
 export default {
   name: 'OperationServers',
   components: {

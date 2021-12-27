@@ -39,23 +39,23 @@ import java.util.concurrent.TimeUnit;
 @ConfigurationProperties(prefix = "auth")
 @Setter
 public final class UserAuthenticationService {
-    
+
     private static final String JWT_TOKEN_ISSUER = "shardingsphere-elasticjob-ui";
-    
+
     private final Algorithm algorithm = Algorithm.HMAC256(RandomStringUtils.randomAlphanumeric(256));
-    
+
     private final JWTVerifier verifier = JWT.require(algorithm).withIssuer(JWT_TOKEN_ISSUER).build();
-    
+
     private String rootUsername;
-    
+
     private String rootPassword;
-    
+
     private String guestUsername;
-    
+
     private String guestPassword;
-    
+
     private int tokenExpiresAfterSeconds = 3600;
-    
+
     /**
      * Check user.
      *
@@ -74,7 +74,7 @@ public final class UserAuthenticationService {
         }
         return new AuthenticationResult(null, null, false, false);
     }
-    
+
     /**
      * Get user authentication token.
      *
@@ -87,7 +87,7 @@ public final class UserAuthenticationService {
         Date expiresAt = new Date(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(tokenExpiresAfterSeconds));
         return JWT.create().withExpiresAt(expiresAt).withIssuer(JWT_TOKEN_ISSUER).withPayload(payload).sign(algorithm);
     }
-    
+
     /**
      * Check if token is valid.
      *

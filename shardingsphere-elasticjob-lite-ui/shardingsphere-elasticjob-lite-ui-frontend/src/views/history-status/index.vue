@@ -16,11 +16,12 @@
   -->
 
 <template>
-  <s-history-status />
+  <s-history-status/>
 </template>
 
 <script>
 import SHistoryStatus from './module/historyStatus'
+
 export default {
   name: 'HistoryStatus',
   components: {

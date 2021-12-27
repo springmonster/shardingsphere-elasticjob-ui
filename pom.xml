@@ -16,7 +16,8 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.apache</groupId>
@@ -28,13 +29,13 @@
     <version>3.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
-    
+
     <modules>
         <module>shardingsphere-elasticjob-lite-ui</module>
-        <module>shardingsphere-elasticjob-cloud-ui</module>
+        <!--        <module>shardingsphere-elasticjob-cloud-ui</module>-->
         <module>shardingsphere-elasticjob-ui-distribution</module>
     </modules>
-    
+
     <properties>
         <elasticjob.version>3.0.1</elasticjob.version>
         <java.version>1.8</java.version>
@@ -60,7 +61,7 @@
         <jaxb-impl.version>2.3.4</jaxb-impl.version>
         <java-jwt.version>3.18.2</java-jwt.version>
     </properties>
-    
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -336,7 +337,7 @@
 
     <url>http://shardingsphere.apache.org/elasticjob/</url>
     <description>Distributed scheduled job solution</description>
-    
+
     <licenses>
         <license>
             <name>Apache License 2.0</name>
@@ -344,14 +345,14 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-    
+
     <scm>
         <connection>scm:git:https://github.com/apache/shardingsphere-elasticjob-ui.git</connection>
         <developerConnection>scm:git:https://github.com/apache/shardingsphere-elasticjob-ui.git</developerConnection>
         <url>https://github.com/apache/shardingsphere-elasticjob-ui.git</url>
         <tag>HEAD</tag>
     </scm>
-    
+
     <mailingLists>
         <mailingList>
             <name>ShardingSphere Developer List</name>

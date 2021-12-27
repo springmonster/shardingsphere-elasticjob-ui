@@ -32,23 +32,23 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FindJobStatusTraceEventsRequest extends BasePageRequest {
-    
+
     private String jobName;
-    
+
     private String source;
-    
+
     private String executionType;
-    
+
     private String state;
-    
+
     private Date creationTimeFrom;
-    
+
     private Date creationTimeTo;
-    
+
     public FindJobStatusTraceEventsRequest(final Integer pageSize, final Integer pageNumber) {
         super(pageSize, pageNumber, null, null);
     }
-    
+
     public FindJobStatusTraceEventsRequest(final Integer pageSize, final Integer pageNumber, final String sortBy, final String orderType, final Date creationTimeFrom, final Date creationTimeTo) {
         super(pageSize, pageNumber, sortBy, orderType);
         this.creationTimeFrom = creationTimeFrom;

@@ -40,17 +40,17 @@ import java.util.Optional;
 @Slf4j
 @Service
 public final class EventTraceDataSourceConfigurationServiceImpl implements EventTraceDataSourceConfigurationService, InitializingBean {
-    
+
     private final ConfigurationsXmlRepository configurationsXmlRepository = new ConfigurationsXmlRepositoryImpl();
-    
+
     @Autowired
     private DynamicDataSourceConfig.DynamicDataSource dynamicDataSource;
-    
+
     @Override
     public EventTraceDataSourceConfigurations loadAll() {
         return loadGlobal().getEventTraceDataSourceConfigurations();
     }
-    
+
     @Override
     public EventTraceDataSourceConfiguration load(final String name) {
         GlobalConfiguration configs = loadGlobal();
@@ -60,7 +60,7 @@ public final class EventTraceDataSourceConfigurationServiceImpl implements Event
         DynamicDataSourceConfig.DynamicDataSourceContextHolder.setDataSourceName(name);
         return result;
     }
-    
+
     @Override
     public EventTraceDataSourceConfiguration find(final String name, final EventTraceDataSourceConfigurations configs) {
         for (EventTraceDataSourceConfiguration each : configs.getEventTraceDataSourceConfiguration()) {
@@ -70,7 +70,7 @@ public final class EventTraceDataSourceConfigurationServiceImpl implements Event
         }
         return null;
     }
-    
+
     private void setActivated(final GlobalConfiguration configs, final EventTraceDataSourceConfiguration toBeConnectedConfig) {
         EventTraceDataSourceConfiguration activatedConfig = findActivatedDataSourceConfiguration(configs);
         if (!toBeConnectedConfig.equals(activatedConfig)) {
@@ -81,12 +81,12 @@ public final class EventTraceDataSourceConfigurationServiceImpl implements Event
             configurationsXmlRepository.save(configs);
         }
     }
-    
+
     @Override
     public Optional<EventTraceDataSourceConfiguration> loadActivated() {
         return Optional.ofNullable(findActivatedDataSourceConfiguration(loadGlobal()));
     }
-    
+
     private EventTraceDataSourceConfiguration findActivatedDataSourceConfiguration(final GlobalConfiguration configs) {
         for (EventTraceDataSourceConfiguration each : configs.getEventTraceDataSourceConfigurations().getEventTraceDataSourceConfiguration()) {
             if (each.isActivated()) {
@@ -95,7 +95,7 @@ public final class EventTraceDataSourceConfigurationServiceImpl implements Event
         }
         return null;
     }
-    
+
     @Override
     public boolean add(final EventTraceDataSourceConfiguration config) {
         GlobalConfiguration configs = loadGlobal();
@@ -107,7 +107,7 @@ public final class EventTraceDataSourceConfigurationServiceImpl implements Event
         }
         return result;
     }
-    
+
     @Override
     public void delete(final String name) {
         GlobalConfiguration configs = loadGlobal();
@@ -117,7 +117,7 @@ public final class EventTraceDataSourceConfigurationServiceImpl implements Event
             configurationsXmlRepository.save(configs);
         }
     }
-    
+
     private GlobalConfiguration loadGlobal() {
         GlobalConfiguration result = configurationsXmlRepository.load();
         if (null == result.getEventTraceDataSourceConfigurations()) {
@@ -125,7 +125,7 @@ public final class EventTraceDataSourceConfigurationServiceImpl implements Event
         }
         return result;
     }
-    
+
     @Override
     public void afterPropertiesSet() {
         for (EventTraceDataSourceConfiguration each : loadGlobal().getEventTraceDataSourceConfigurations().getEventTraceDataSourceConfiguration()) {
@@ -136,7 +136,7 @@ public final class EventTraceDataSourceConfigurationServiceImpl implements Event
             }
         }
     }
-    
+
     private void afterLoad(final EventTraceDataSourceConfiguration config) {
         DataSource dataSource = DataSourceFactory.createDataSource(config);
         dynamicDataSource.addDataSource(config.getName(), dataSource);

@@ -62,7 +62,7 @@
           :prop="item.prop"
           :label="item.label"
           :width="item.width"
-          :formatter = "item.formatter"
+          :formatter="item.formatter"
         />
       </el-table>
       <div class="pagination">
@@ -79,8 +79,9 @@
   </el-row>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 import API from '../api'
+
 export default {
   name: 'HistoryTrace',
   data() {
@@ -101,7 +102,7 @@ export default {
         {
           label: this.$t('historyTrace').column.executeResult,
           prop: 'success',
-          formatter: function(row, cell, value) {
+          formatter: function (row, cell, value) {
             return value + ''
           }
         },
@@ -112,7 +113,7 @@ export default {
         {
           label: this.$t('historyTrace').column.startTime,
           prop: 'startTime',
-          formatter: function(row, cell, value) {
+          formatter: function (row, cell, value) {
             var t = new Date(value)
             if (!t) {
               return ''
@@ -123,7 +124,7 @@ export default {
         {
           label: this.$t('historyTrace').column.completeTime,
           prop: 'completeTime',
-          formatter: function(row, cell, value) {
+          formatter: function (row, cell, value) {
             var t = new Date(value)
             if (!t) {
               return ''
@@ -164,14 +165,14 @@ export default {
     fetchJobNameSuggestions(jobNamePrefix, callback) {
       API.getExecutionJobNameSuggestions(jobNamePrefix).then(res => {
         const jobNames = res.model
-        const suggestions = jobNames.map(jobName => ({ value: jobName }))
+        const suggestions = jobNames.map(jobName => ({value: jobName}))
         callback(suggestions)
       })
     },
     fetchIpSuggestions(ipPrefix, callback) {
       API.getExecutionIpSuggestions(ipPrefix).then(res => {
         const ips = res.model
-        const suggestions = ips.map(ip => ({ value: ip }))
+        const suggestions = ips.map(ip => ({value: ip}))
         callback(suggestions)
       })
     },
@@ -215,10 +216,12 @@ export default {
 .btn-group {
   margin-bottom: 20px;
 }
+
 .pagination {
   float: right;
   margin: 10px -10px 10px 0;
 }
+
 .el-input {
   width: 200px;
 }

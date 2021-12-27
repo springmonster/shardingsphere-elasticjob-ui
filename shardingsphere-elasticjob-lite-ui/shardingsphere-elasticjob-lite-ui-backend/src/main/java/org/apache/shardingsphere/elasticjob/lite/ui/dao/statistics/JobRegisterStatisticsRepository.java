@@ -31,7 +31,7 @@ import java.util.List;
  */
 @Repository
 public interface JobRegisterStatisticsRepository extends JpaRepository<JobRegisterStatistics, Long> {
-    
+
     /**
      * Find job register statistics.
      *

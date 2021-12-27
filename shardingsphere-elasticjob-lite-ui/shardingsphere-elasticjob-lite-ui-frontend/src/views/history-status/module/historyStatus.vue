@@ -56,7 +56,7 @@
           :prop="item.prop"
           :label="item.label"
           :width="item.width"
-          :formatter = "item.formatter"
+          :formatter="item.formatter"
         />
       </el-table>
       <div class="pagination">
@@ -73,7 +73,7 @@
   </el-row>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 import API from '../api'
 import clone from 'lodash/clone'
 
@@ -97,7 +97,7 @@ export default {
         {
           label: this.$t('historyStatus').column.createTime,
           prop: 'creationTime',
-          formatter: function(row, cell, value) {
+          formatter: function (row, cell, value) {
             var t = new Date(value)
             if (!t) {
               return ''
@@ -155,7 +155,7 @@ export default {
     fetchJobNameSuggestions(jobNamePrefix, callback) {
       API.getStatusJobNameSuggestions(jobNamePrefix).then(res => {
         const jobNames = res.model
-        const suggestions = jobNames.map(jobName => ({ value: jobName }))
+        const suggestions = jobNames.map(jobName => ({value: jobName}))
         callback(suggestions)
       })
     },
@@ -199,10 +199,12 @@ export default {
 .btn-group {
   margin-bottom: 20px;
 }
+
 .pagination {
   float: right;
   margin: 10px -10px 10px 0;
 }
+
 .el-input {
   width: 200px;
 }

@@ -24,7 +24,8 @@
         type="primary"
         icon="el-icon-plus"
         @click="add"
-      >{{ $t("dataSource.btnTxt") }}</el-button>
+      >{{ $t("dataSource.btnTxt") }}
+      </el-button>
     </div>
     <div class="table-wrap">
       <el-table :data="tableData" border style="width: 100%">
@@ -85,7 +86,7 @@
     >
       <el-form ref="form" :model="form" :rules="rules" label-width="170px">
         <el-form-item :label="$t('dataSource.addDialog.name')" prop="name">
-          <el-input :placeholder="$t('dataSource.rules.name')" v-model="form.name" autocomplete="off" />
+          <el-input :placeholder="$t('dataSource.rules.name')" v-model="form.name" autocomplete="off"/>
         </el-form-item>
         <el-form-item :label="$t('dataSource.addDialog.driver')" prop="driver">
           <el-select
@@ -130,20 +131,23 @@
         <el-button
           type="primary"
           @click="connectTest('form')"
-        >{{ $t("dataSource.addDialog.btnConnectTestTxt") }}</el-button>
+        >{{ $t("dataSource.addDialog.btnConnectTestTxt") }}
+        </el-button>
         <el-button
           type="primary"
           @click="onConfirm('form')"
-        >{{ $t("dataSource.addDialog.btnConfirmTxt") }}</el-button>
+        >{{ $t("dataSource.addDialog.btnConfirmTxt") }}
+        </el-button>
       </div>
     </el-dialog>
 
   </el-row>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 import clone from 'lodash/clone'
 import API from '../api'
+
 export default {
   name: 'DataSource',
   data() {
@@ -346,6 +350,7 @@ export default {
 .btn-group {
   margin-bottom: 20px;
 }
+
 .pagination {
   float: right;
   margin: 10px -10px 10px 0;

@@ -34,7 +34,7 @@
     <modules>
         <module>shardingsphere-elasticjob-ui-src-distribution</module>
         <module>shardingsphere-elasticjob-lite-ui-bin-distribution</module>
-        <module>shardingsphere-elasticjob-cloud-ui-bin-distribution</module>
+<!--        <module>shardingsphere-elasticjob-cloud-ui-bin-distribution</module>-->
     </modules>
     
     <build>

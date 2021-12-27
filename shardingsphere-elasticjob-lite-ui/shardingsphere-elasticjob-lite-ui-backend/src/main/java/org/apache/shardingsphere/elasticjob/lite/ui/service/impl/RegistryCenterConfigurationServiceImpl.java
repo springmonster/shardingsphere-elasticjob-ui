@@ -32,14 +32,14 @@ import java.util.Optional;
  */
 @Service
 public final class RegistryCenterConfigurationServiceImpl implements RegistryCenterConfigurationService {
-    
+
     private ConfigurationsXmlRepository configurationsXmlRepository = new ConfigurationsXmlRepositoryImpl();
-    
+
     @Override
     public RegistryCenterConfigurations loadAll() {
         return loadGlobal().getRegistryCenterConfigurations();
     }
-    
+
     @Override
     public RegistryCenterConfiguration load(final String name) {
         GlobalConfiguration configs = loadGlobal();
@@ -47,7 +47,7 @@ public final class RegistryCenterConfigurationServiceImpl implements RegistryCen
         setActivated(configs, result);
         return result;
     }
-    
+
     @Override
     public RegistryCenterConfiguration find(final String name, final RegistryCenterConfigurations configs) {
         for (RegistryCenterConfiguration each : configs.getRegistryCenterConfiguration()) {
@@ -57,7 +57,7 @@ public final class RegistryCenterConfigurationServiceImpl implements RegistryCen
         }
         return null;
     }
-    
+
     private void setActivated(final GlobalConfiguration configs, final RegistryCenterConfiguration toBeConnectedConfig) {
         RegistryCenterConfiguration activatedConfig = findActivatedRegistryCenterConfiguration(configs);
         if (!toBeConnectedConfig.equals(activatedConfig)) {
@@ -68,12 +68,12 @@ public final class RegistryCenterConfigurationServiceImpl implements RegistryCen
             configurationsXmlRepository.save(configs);
         }
     }
-    
+
     @Override
     public Optional<RegistryCenterConfiguration> loadActivated() {
         return Optional.ofNullable(findActivatedRegistryCenterConfiguration(loadGlobal()));
     }
-    
+
     private RegistryCenterConfiguration findActivatedRegistryCenterConfiguration(final GlobalConfiguration configs) {
         for (RegistryCenterConfiguration each : configs.getRegistryCenterConfigurations().getRegistryCenterConfiguration()) {
             if (each.isActivated()) {
@@ -82,7 +82,7 @@ public final class RegistryCenterConfigurationServiceImpl implements RegistryCen
         }
         return null;
     }
-    
+
     @Override
     public boolean add(final RegistryCenterConfiguration config) {
         GlobalConfiguration configs = loadGlobal();
@@ -92,7 +92,7 @@ public final class RegistryCenterConfigurationServiceImpl implements RegistryCen
         }
         return result;
     }
-    
+
     @Override
     public void delete(final String name) {
         GlobalConfiguration configs = loadGlobal();
@@ -102,7 +102,7 @@ public final class RegistryCenterConfigurationServiceImpl implements RegistryCen
             configurationsXmlRepository.save(configs);
         }
     }
-    
+
     private GlobalConfiguration loadGlobal() {
         GlobalConfiguration result = configurationsXmlRepository.load();
         if (null == result.getRegistryCenterConfigurations()) {

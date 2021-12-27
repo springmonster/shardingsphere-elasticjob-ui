@@ -36,10 +36,10 @@ public final class ResponseResult<T> implements Serializable {
     private static final long serialVersionUID = -7090019282307269743L;
 
     private boolean success = true;
-    
+
     private int errorCode;
-    
+
     private String errorMsg;
-    
+
     private T model;
 }

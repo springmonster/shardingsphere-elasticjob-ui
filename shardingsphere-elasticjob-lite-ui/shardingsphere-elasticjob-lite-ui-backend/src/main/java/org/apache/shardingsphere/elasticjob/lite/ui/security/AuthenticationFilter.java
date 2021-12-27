@@ -22,12 +22,7 @@ import com.google.common.base.Strings;
 import lombok.Setter;
 import org.apache.shardingsphere.elasticjob.lite.ui.web.response.ResponseResultUtil;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -38,18 +33,18 @@ import java.util.Map;
  * Authentication filter.
  */
 public final class AuthenticationFilter implements Filter {
-    
+
     private static final String LOGIN_URI = "/api/login";
-    
+
     private final ObjectMapper objectMapper = new ObjectMapper();
-    
+
     @Setter
     private UserAuthenticationService userAuthenticationService;
-    
+
     @Override
     public void init(final FilterConfig filterConfig) {
     }
-    
+
     @Override
     public void doFilter(final ServletRequest servletRequest, final ServletResponse servletResponse, final FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
@@ -65,11 +60,11 @@ public final class AuthenticationFilter implements Filter {
         }
         filterChain.doFilter(httpRequest, httpResponse);
     }
-    
+
     @Override
     public void destroy() {
     }
-    
+
     private void handleLogin(final HttpServletRequest httpRequest, final HttpServletResponse httpResponse) {
         try {
             UserAccount user = objectMapper.readValue(httpRequest.getReader(), UserAccount.class);
@@ -89,7 +84,7 @@ public final class AuthenticationFilter implements Filter {
             e.printStackTrace();
         }
     }
-    
+
     private void respondWithUnauthorized(final HttpServletResponse httpResponse) throws IOException {
         httpResponse.setContentType("application/json");
         httpResponse.setCharacterEncoding("UTF-8");

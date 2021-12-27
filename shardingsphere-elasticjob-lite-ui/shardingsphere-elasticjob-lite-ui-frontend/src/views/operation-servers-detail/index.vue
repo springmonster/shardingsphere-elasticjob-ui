@@ -16,11 +16,12 @@
   -->
 
 <template>
-  <s-operation-servers-detail />
+  <s-operation-servers-detail/>
 </template>
 
 <script>
 import SOperationServersDetail from './module/operationServersDetail'
+
 export default {
   name: 'OperationServersDetail',
   components: {

@@ -27,9 +27,9 @@ import org.apache.shardingsphere.elasticjob.lite.ui.domain.EventTraceDataSourceC
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class SessionEventTraceDataSourceConfiguration {
-    
+
     private static EventTraceDataSourceConfiguration eventTraceDataSourceConfiguration;
-    
+
     /**
      * Set event trace data source configuration.
      *

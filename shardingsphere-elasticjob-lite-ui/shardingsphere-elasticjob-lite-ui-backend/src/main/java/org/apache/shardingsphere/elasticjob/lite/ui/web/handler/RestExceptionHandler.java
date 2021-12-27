@@ -32,13 +32,13 @@ import java.util.Optional;
 @Slf4j
 @RestControllerAdvice
 public final class RestExceptionHandler {
-    
+
     @ExceptionHandler(JdbcDriverNotFoundException.class)
     public ResponseResult handleJdbcDriverNotFoundException(final JdbcDriverNotFoundException ex) {
         log.error(ex.getLocalizedMessage(), ex);
         return ResponseResultUtil.handleUncaughtException(ex.getLocalizedMessage());
     }
-    
+
     @ExceptionHandler(Exception.class)
     public ResponseResult handleException(final Exception ex) {
         Throwable cause = Optional.ofNullable(ex.getCause()).orElse(ex);
